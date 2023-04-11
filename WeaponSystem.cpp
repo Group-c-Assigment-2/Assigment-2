@@ -1,7 +1,7 @@
 #include "WeaponsSystem.h"
 
 
-bool Weapons::FireTorpedos(int _torpedos) { //might need to change it to address and pointers
+bool Weapons::FireTorpedos(int& _torpedos) { //might need to change it to address and pointers
 
 	bool retValue = false;
 
@@ -9,15 +9,11 @@ bool Weapons::FireTorpedos(int _torpedos) { //might need to change it to address
 		numberOfTorpedos -= _torpedos;
 		retValue = true;
 	}
-	else
-	{
-		retValue;
-	}
 
 	return retValue;
 }
 
-double Weapons::FireLaser(double _timeDuration) {
+double Weapons::FireLaser(double& _timeDuration) {
 
 	double energyConsumption;
 
@@ -27,17 +23,17 @@ double Weapons::FireLaser(double _timeDuration) {
 
 }
 
-void Weapons::AddTorpedos(int _torpedos) { // probably needs a change
-
-	if (numberOfTorpedos > 0 && numberOfTorpedos < torpedoCapacity) {
+void Weapons::AddTorpedos(int _torpedos) { 
+	
+	if (numberOfTorpedos + _torpedos <= torpedoCapacity) {
 		numberOfTorpedos += _torpedos;
 	}
 
 }
 
-void Weapons::AddCannons(int _laserCannons) { // might get some issues with the statement
+void Weapons::AddCannons(int _laserCannons) { 
 
-	if (numberOfLaserCannons > 0 && numberOfLaserCannons < maxNumOfLaserCannon) {
+	if (numberOfLaserCannons + _laserCannons <= maxNumOfLaserCannon) {
 		numberOfLaserCannons += _laserCannons;
 	}
 	

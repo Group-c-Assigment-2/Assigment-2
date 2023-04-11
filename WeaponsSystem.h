@@ -1,3 +1,9 @@
+/*
+Harout Nazarian
+hnazarian2@myseneca.ca
+116431222
+*/
+
 #pragma once
 
 #ifndef _WEAPONSSYSTEM_H_
@@ -10,32 +16,32 @@ class Weapons {
 
 private:
 
-	int numberOfTorpedos;
-	int numberOfLaserCannons;
+	int numTorpedos;
+	int numLaser;
 	const int torpedoCapacity = 110;
-	const int maxNumOfLaserCannon = 10;
-	const int energyPerSecond = 1000000000000;
+	const int maxNumLaser = 10;
+	const double energyPerSecond = 1000000000000;
 
 public:
 
 	Weapons() {
 		
-		numberOfTorpedos = 0;
-		numberOfLaserCannons = 0;
+		numTorpedos = 0;
+		numLaser= 0;
 
 	}
 
-	Weapons(int _torpedos, int _laserCannons) {
+	Weapons(int _torpedos, int _laser) {
 
-		numberOfTorpedos = _torpedos;
-		numberOfLaserCannons = _laserCannons;
+		numTorpedos = _torpedos;
+		numLaser = _laser;
 
 	}
 
 	bool FireTorpedos(int& _torpedos);
 	double FireLaser(double& _timeDuration);
 	void AddTorpedos(int _torpedos);
-	void AddCannons(int _laserCannons);
+	void AddCannons(int _laser);
 	void GenerateReport();
 	
 };

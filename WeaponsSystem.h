@@ -32,8 +32,8 @@ public:
 
 	}
 
-	bool FireTorpedos(int _torpedos);
-	double FireLaser(double _timeDuration);
+	bool FireTorpedos(int& _torpedos);
+	double FireLaser(double& _timeDuration);
 	void AddTorpedos(int _torpedos);
 	void AddCannons(int _laserCannons);
 	void GenerateReport();

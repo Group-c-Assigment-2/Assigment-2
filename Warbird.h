@@ -1,40 +1,44 @@
+/*
+Warbird.h
+Raghav
+*/
 #pragma once
-#ifndef WARBIRD_H
-#define WARBIRD_H
+#ifndef _WARBIRD_H_
+#define _WARBIRD_H_
 
 #include "Propulsion.h"
 #include "Payload.h"
 #include "WeaponsSystem.h"
 
-#include <iostream>
-
 class Warbird
 {
 private:
-    Propulsion propulsionSystem1; // Why use pointers?
-    Propulsion propulsionSystem2;
-    Payload payloadSystem;
-    Weapons weaponSystem1;
-    Weapons weaponSystem2;
-    double speed;            // speed of travel in meters per second
-    double distanceTraveled; // distance traveled in meters
+    Propulsion* prop1; 
+    Propulsion* prop2;
+    Payload* payload;
+    Weapons* weapon1;
+    Weapons* weapon2;
+    double speed; // speed of travel in meters per second
+    double distance; // distance traveled in meters
 
 public:
-    Warbird();
-    // constructor parameters are incorrect: refer to main file and assgn2
-    // constructor i am still working on it and a bit confused.
+    Warbird() {
+        distance = 0;
+        speed = 0;
+    }
 
-    int getSpeed() { return speed; }
-    int getDistanceTraveled() { return distanceTraveled; }
+    //Constructor accepts parameters such as fuel level, light level, 
+   //mass of passengers, mass of cargo, mass of workstation, 
+   //no. of torpedos and lasers 
+    Warbird(double fuel, double lightLevel, double mPass,
+        double mCar, double mWork, int torp, int laser);
 
-    int setSpeed(int s) { speed = s; }
-    int setDistanceTraveled(int d) { distanceTraveled = d; }
-
-    bool ChangeSpeed(double speed);
+    bool ChangeSpeed(double vel);
     void Travel(double time, double lightLevel);
-    bool FireTorpedo(int torpedoes);
-    bool FireLaser();
-    void GenerateReport();
+    bool FireTorpedo(int num);
+    bool FireLaser(double time);
+    void GenerateReport() const;
+    ~Warbird();
 };
 
 #endif // WARBIRD_H

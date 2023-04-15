@@ -1,3 +1,9 @@
+/*
+* Payload.h
+Crissha 
+*/
+#pragma once
+
 #pragma once
 #ifndef _PAYLOAD_H_
 #define _PAYLOAD_H_
@@ -6,24 +12,21 @@
 
 class Payload {
 private:
-	double passengers;
-	double cargo;
-	double workstations;
-
+	double mPassengers;
+	double mCargo;
+	double mWorkstations;
 
 public:
-		Payload();
-		Payload(double _passenger, double _cargo, double _workstations);
-		//Construct itself with the masses of the passengers, cargo, and 
-		//workstation
-		double GetMass();
-		bool AddPassengers(double _passengers);
-		bool AddCargo(double _cargo);
-		bool AddWorkstations(double _workstations);
-		void report();
-
+	Payload();
+	//Construct itself with the masses of the mPassengers, cargo, and 
+	//workstation
+	Payload(const double &mPassenger, const double& mCargo,
+		const double& mWorkstations);
+	double GetMass() const;
+	bool AddPassengers(double mPassengers);
+	bool AddCargo(double _cargo);
+	bool AddWorkstations(double _workstations);
+	void GenerateReport() const;
 };
-
-
 
 #endif

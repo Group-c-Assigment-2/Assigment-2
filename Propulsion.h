@@ -1,7 +1,14 @@
-// Propulsion.h - file for propulsion class
-
+/* Propulsion.h
+Fahima
+*/
+#pragma once
 #ifndef _PROPULSION_H_
 #define _PROPULSION_H_
+
+#include <cmath>
+#include <iostream>
+#include <iomanip>
+
 /*m. The propulsion system consists of the following:
 o The fuel level in kg of matter/anti-matter,
 o The fuel tank capacity, fixed at 1000.0kg of matter/anti-matter,
@@ -13,20 +20,18 @@ sun.*/
 class Propulsion {
     // private
     double fuel;
-    double capacity; // fixed
-    double speedoflight; // fixed
+    const double capacity = 1000;
+    const double speedOfLight = 299792458;
     double lightLevel;
+
 public:
     // constructor
     Propulsion();
-    Propulsion(double _fuel, double _lightLevel);
-    bool ConsumeFuel(double energy);
+    Propulsion(double fuel, double lightLevel);
+    bool ConsumeFuel(const double &energy);
     void AddFuel(double _fuel);
     void GenerateFuel(double time);
     void SetLightLevel(double _lightLevel);
-    void GenerateReport();
+    void GenerateReport() const;
 };
-
 #endif
-
-

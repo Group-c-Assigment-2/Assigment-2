@@ -1,49 +1,34 @@
-/*
-Harout Nazarian
-hnazarian2@myseneca.ca
-116431222
+/* WeaponsSystem.h
+Harout
 */
-
+#pragma once
 #pragma once
 
 #ifndef _WEAPONSSYSTEM_H_
 #define _WEAPONSSYSTEM_H_
-
 #include <iostream>
-#include <iomanip>
 
 class Weapons {
 
 private:
-
 	int numTorpedos;
-	int numLaser;
-	const int torpedoCapacity = 110;
-	const int maxNumLaser = 10;
-	const double energyPerSecond = 1000000000000;
+	int numLaserCannons;
+	const int maxTorpedos = 110;
+	const int maxLaserCannons = 10;
+	const double energyPerSecond = 1000000000000.0; 
 
 public:
 
-	Weapons() {
-		
-		numTorpedos = 0;
-		numLaser= 0;
-
-	}
-
-	Weapons(int _torpedos, int _laser) {
-
+	Weapons();
+	Weapons(int _torpedos, int _laserCannons) {
 		numTorpedos = _torpedos;
-		numLaser = _laser;
-
+		numLaserCannons = _laserCannons;
 	}
-
-	bool FireTorpedos(int& _torpedos);
-	double FireLaser(double& _timeDuration);
+	bool FireTorpedos(int _torpedos);
+	double FireLaser(double time);
 	void AddTorpedos(int _torpedos);
-	void AddCannons(int _laser);
-	void GenerateReport();
-	
+	void AddCannons(int _laserCannons);
+	void GenerateReport() const;
 };
 
 #endif // !_WEAPONSSYSTEM_H_

@@ -1,56 +1,61 @@
-// Propulsion.cpp - functions for propulsion object
+/* Propulsion.cpp
+Fahima
+*/
 
 #include "Propulsion.h"
-#include <iostream>
 
 Propulsion::Propulsion() {
-    fuel = 0.00;
-    lightLevel = 0.00;
-    capacity = 1000.0; // fixed
-    speedoflight = 299792458.0;
-};
+    fuel = 0;
+    lightLevel = 0;
+}
 
-Propulsion::Propulsion(double _fuel, double _lightLevel) {
-    fuel = _fuel;
-    lightLevel = _lightLevel;
-    capacity = 1000.0; // fixed
-    speedoflight = 299792458.0;
-};
+Propulsion::Propulsion(double fuel, double lightLevel) {
+    this->fuel = fuel;
+    this->lightLevel = lightLevel;
+}
 
-// Consume fuel (passing through the energy required, return true if there is enough fuel to provide the energy required and false otherwise). Fuel is consumed according to Einstein's equation E=mc2, m=E/c2.
-bool Propulsion::ConsumeFuel(double energy) {
-    double fuel_required = energy / (speedoflight * speedoflight);
-    if (fuel >= fuel_required) {
-        fuel -= fuel_required;
+//return true if there is snough fuel to 
+//ChangeSpeed / FireLasers etc.
+bool Propulsion::ConsumeFuel(const double& energy) {
+    long double reqFuel = 0;
+    reqFuel = energy / pow(speedOfLight, 2);
+
+    if (reqFuel > fuel) {
+        return false;
+    }
+
+    else {
+        this->fuel -= reqFuel;
         return true;
     }
-    else {
-        return false;
-    };
-};
+}
 
-// Add fuel (in kg of matter/anti-matter)
-void Propulsion::AddFuel(double _fuel) {
-    fuel += _fuel;
-};
-
-// Generate fuel (passing through the time elapsed in seconds). The amount of fuel generated for a given number of seconds is the light level times the time in seconds.
-void Propulsion::GenerateFuel(double time) {
-    double fuel_generated = (lightLevel * time);
-    if ((fuel + fuel_generated) >= capacity) {
-        fuel = capacity;
+void Propulsion::AddFuel(double fuel) {
+    if (fuel > 0) {
+        if (this->fuel + fuel <= capacity) {
+            this->fuel += fuel;
+        }
+        else {
+            this->fuel = capacity;
+        }
     }
-    else {
-        fuel += fuel_generated;
-    };
-};
+}
 
-//Set the light level (passing through the light level)
-void Propulsion::SetLightLevel(double _lightLevel) {
-    lightLevel = _lightLevel;
-};
+void Propulsion::GenerateFuel(double time) {
+    double fuel = 0;
+    if (time > 0) {
+        fuel = this->lightLevel * time;
+    }
+    this->AddFuel(fuel);
+}
 
-// generates final report
-void Propulsion::GenerateReport() {
-    std::cout << "Propulsion: fuel level: " << fuel << "kg of matter/anti-matter, light level: " << lightLevel << std::endl;
+void Propulsion::SetLightLevel(double lightLevel) {
+    this->lightLevel = lightLevel;
+}
+
+void Propulsion::GenerateReport() const {
+    std::cout.setf(std::ios::fixed);
+    std::cout << std::setprecision(2) << "Propulsion: fuel Level: "
+        << fuel << " kg of matter/anti-matter, light level: "
+        << lightLevel << std::endl;
 }
